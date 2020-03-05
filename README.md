@@ -1,12 +1,25 @@
-## PDAL CAPI
+## Install libpdalc
 
-https://github.com/PDAL/CAPI
+Note: before running the commands below you may first need to patch ObtainProjectVersion.
 
-## ObtainProjectVersion
+Also requires ``` pdal ``` and ``` lcov ```. 
+
+```bash
+git clone https://github.com/PDAL/CAPI.git 
+mkdir CAPI/build && cd CAPI/build
+cmake ..
+make
+make install
+```
+
+## Patch ObtainProjectVersion
+
+The current version is 1.8 and therefor the ObtainProjectVersion won't work correctly, as it assumes a three part version number.
+
+It will work when the patch part is ignored in ``` CAPI/cmake/ObtainProjectVersion.cmake ```
 
 ```
-# We use tags with the three version numbers
-	# Use the remainder of the `git describe` output for the build ID
+	#if(GIT_DESCRIBE_OUTPUT MATCHES "^([0-9]+)\\.([0-9]+)\\.([0-9]+)-([0-9]+)-g([a-f0-9]+)$")
 	if(GIT_DESCRIBE_OUTPUT MATCHES "^([0-9]+)\\.([0-9]+)-([0-9]+)-g([a-f0-9]+)$")
 		string(REGEX REPLACE "([0-9]+).*" "\\1" MAJOR_VERSION ${GIT_DESCRIBE_OUTPUT})
 		string(REGEX REPLACE "([0-9]+)\\.([0-9]+).*" "\\2" MINOR_VERSION ${GIT_DESCRIBE_OUTPUT})
