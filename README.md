@@ -12,6 +12,10 @@ make
 make install
 ```
 
+Verify you can now call pdalc by running 
+
+``` cargo test ```
+
 ## Patch ObtainProjectVersion
 
 The current version is 1.8 and therefor the ObtainProjectVersion won't work correctly, as it assumes a three part version number.
