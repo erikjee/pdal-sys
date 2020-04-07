@@ -18,7 +18,7 @@ Verify you can now call pdalc by running
 
 ## Patch ObtainProjectVersion
 
-The current version is 1.8 and therefor the ObtainProjectVersion won't work correctly, as it assumes a three part version number.
+ObtainProjectVersion assumes a three part version number for pdal. When your pdal version has two parts (e.g. 1.8) the build fails.
 
 It will work when the patch part is ignored in ``` CAPI/cmake/ObtainProjectVersion.cmake ```
 
